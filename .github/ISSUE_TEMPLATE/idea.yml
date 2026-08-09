@@ -1,0 +1,8 @@
+name: Idea
+description: A feature, a voice, a move, a pack - we ship updates weekly
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes: {label: The idea, description: "What should it do, and what moment is it for?"}
+    validations: {required: true}
