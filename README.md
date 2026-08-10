@@ -4,6 +4,10 @@ EchoVoice gives your AI coding partner a voice inside VS Code. When your partner
 
 Built for **Claude Code**, **Codex CLI**, **Gemini / Antigravity**, and **Kimi Code** — each in its own voice, so you can run several partners at once and always know who's talking. Part of the [EchoTools](https://github.com/pigon-ai) suite by [PiGON](https://pigon.ai). **No telemetry — nothing about you or your code is collected.** Network use is limited to things you choose: a local engine's one-time, integrity-verified download, and ElevenLabs synthesis if you bring your own key.
 
+![One-minute tour of EchoVoice](images/tour.gif)
+
+*One minute, sound off — the captions carry it. Prefer Milo's narrated tour? It's inside the extension: **EchoVoice: Play Intro**.*
+
 ## Features
 
 - 🔊 **Speaks new responses automatically** — watches your partners' conversation transcripts and reads each new reply aloud.
@@ -94,6 +98,24 @@ EchoVoice runs locally by design (`extensionKind: ui`) — in SSH, WSL, or Dev C
 - **Linux** — system voice needs `spd-say` (install your distro's `speech-dispatcher`); ElevenLabs playback needs `mpv`. If a binary is missing, EchoVoice tells you which one instead of failing silently.
 
 EchoVoice contains **no telemetry and no analytics code** — that's checkable in this package, and [DISCLOSURES.md](DISCLOSURES.md) itemizes every byte that can ever leave your machine. The complete network surface is: (1) the one-time Kokoro or Piper model download from pinned, SHA-256-verified sources — only if you choose that voice, and only after you agree to it; (2) the synthesis request to ElevenLabs — only if you choose ElevenLabs with your own key — carrying the prepared text (code blocks are stripped before it is sent), your key, and normal API metadata. System voices make no network calls at all.
+
+## A quick look
+
+**Everything lives in the status bar** — mute, replay, voices, one click:
+
+<img src="images/quick-menu.png" width="760" alt="The EchoVoice quick menu, opened from the highlighted status-bar item" />
+
+**A voice per partner** — know who's talking without looking:
+
+<img src="images/per-partner-voices.png" width="760" alt="Per-partner voice picker: Claude Code, Codex, Gemini, and Kimi Code each with their own voice" />
+
+**Kokoro's 29 free local voices** — one 88 MB download, asked first, offline after:
+
+<img src="images/kokoro-voices.png" width="700" alt="The Kokoro voice picker listing free local neural voices" />
+
+**Milo's narrated intro** — audio plus a full transcript, works with the sound off:
+
+<img src="images/meet-echovoice.png" width="760" alt="The Meet EchoVoice panel: audio player, speed controls, and full transcript" />
 
 ## Tips
 
