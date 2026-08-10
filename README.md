@@ -26,6 +26,12 @@ Built for **Claude Code**, **Codex CLI**, **Gemini / Antigravity**, and **Kimi C
 
 Click the **🔊 EchoVoice** item in the status bar to mute or unmute.
 
+**Take the guided tour** — a five-step walkthrough with a narrated intro by
+Milo (just under three minutes, full transcript included). It opens by
+itself on a fresh install; to revisit it any time, open the Command Palette
+and run **"Welcome: Open Walkthrough…" → Get Started with EchoVoice** — or
+jump straight to the narration with **"EchoVoice: Play Intro"**.
+
 ## Using your own ElevenLabs voice
 
 1. Run **EchoVoice: Set ElevenLabs API Key** from the Command Palette and paste your key (input is masked; stored encrypted). If an `ELEVENLABS_API_KEY` environment variable is present, it is used as a fallback.
