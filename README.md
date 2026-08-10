@@ -6,7 +6,9 @@ Built for **Claude Code**, **Codex CLI**, **Gemini / Antigravity**, and **Kimi C
 
 ![One-minute tour of EchoVoice](images/tour.gif)
 
-*One minute, sound off — the captions carry it. Prefer Milo's narrated tour? It's inside the extension: **EchoVoice: Play Intro**.*
+*One minute, sound off — the captions carry it.*
+
+🔊 **[Listen to Milo present EchoVoice](images/milo-tour.mp3)** *(3 minutes, audio)* — or hear it inside the extension: **EchoVoice: Play Intro**.
 
 ## Features
 
