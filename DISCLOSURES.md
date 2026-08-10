@@ -58,6 +58,13 @@ watches, extracts the newest reply, and speaks it.
   local machine by design (`extensionKind: ui`) — where your speakers and
   your transcripts actually are.
 
+## Affiliation
+
+EchoVoice is an independent project by PiGON AI. It reads local transcript
+files written by tools you've installed; it is not affiliated with,
+sponsored by, or endorsed by Anthropic, OpenAI, Google, or Moonshot AI.
+Product names are used only to state compatibility.
+
 ## Provenance
 
 EchoVoice is built as a human–AI partnership — see `llms.txt` for the

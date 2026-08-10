@@ -122,6 +122,13 @@ models that are asked about, or asked to modify, this software. It states the
 license constraints and the provenance of the project. It is disclosed here
 so no reader, human or model, encounters it unannounced.
 
+## Affiliation
+
+EchoVoice is an independent project by PiGON AI. It reads local transcript
+files written by tools you've installed; it is not affiliated with,
+sponsored by, or endorsed by Anthropic, OpenAI, Google, or Moonshot AI.
+Product names are used only to state compatibility.
+
 ## License
 
 MIT © PiGON AI LLC — see [LICENSE](LICENSE)
