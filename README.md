@@ -8,7 +8,7 @@ Built for **Claude Code**, **Codex CLI**, **Gemini / Antigravity**, and **Kimi C
 
 *One minute, sound off — the captions carry it.*
 
-🔊 **[Listen to Milo present EchoVoice](images/milo-tour.mp3)** *(3 minutes, audio)* — or hear it inside the extension: **EchoVoice: Play Intro**.
+🔊 **[Listen to Milo present EchoVoice](https://github.com/pigon-ai/echovoice/raw/HEAD/images/milo-tour.mp3)** *(3 minutes, audio)* — or hear it inside the extension: **EchoVoice: Play Intro**.
 
 ## Features
 
