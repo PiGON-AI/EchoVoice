@@ -2,11 +2,13 @@
 
 EchoVoice gives your AI coding partner a voice inside VS Code. When your partner finishes a response, EchoVoice speaks it aloud — so you can keep your eyes on the code (or the coffee) while your partner talks.
 
-Built for **Claude Code**, **Codex CLI**, **Gemini / Antigravity**, and **Kimi Code** — each in its own voice, so you can run several partners at once and always know who's talking. Part of the [EchoTools](https://github.com/pigon-ai) suite by [PiGON](https://pigon.ai). **No telemetry — nothing about you or your code is collected.** Network use is limited to things you choose: a local engine's one-time, integrity-verified download, and ElevenLabs synthesis if you bring your own key.
+Built for **Claude Code**, **Codex CLI**, **Gemini / Antigravity**, and **Kimi Code** — each in its own voice, so you can run several partners at once and always know who's talking. Part of the [EchoTools](https://echotools.dev) suite by PiGON AI. **No telemetry — nothing about you or your code is collected.** Network use is limited to things you choose: a local engine's one-time, integrity-verified download, and ElevenLabs synthesis if you bring your own key.
 
-![One-minute tour of EchoVoice](images/tour.gif)
+[![EchoVoice — click for the full tour, narrated by Milo](images/tour-teaser.gif)](https://echotools.dev/#echovoice)
 
-*One minute, sound off — the captions carry it. Prefer Milo's narrated tour? It's inside the extension: **EchoVoice: Play Intro**.*
+*▶ **[Watch the full tour — with Milo's voice](https://echotools.dev/#echovoice)** — or hear it inside the extension: **EchoVoice: Play Intro**.*
+
+**Better together:** install **[EchoAvatar](https://marketplace.visualstudio.com/items?itemName=PigonAI.echoavatar)** and every voice plays through Milo — a living avatar with mouth-sync, a dance, and an ear tuned to your voice. EchoAvatar requires EchoVoice: installing it pulls this extension in automatically.
 
 ## Features
 
