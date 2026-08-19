@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.11.1 — Initial public release
+## 0.11.2 — Initial public release
 
 EchoVoice gives your AI coding partners a voice inside VS Code. This first
 public release includes:
