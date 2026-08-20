@@ -1,4 +1,4 @@
-# EchoVoice — hear your AI partner
+# EchoVoice™ — hear your AI partner
 
 EchoVoice gives your AI coding partner a voice inside VS Code. When your partner finishes a response, EchoVoice speaks it aloud — so you can keep your eyes on the code (or the coffee) while your partner talks.
 
@@ -162,3 +162,5 @@ Product names are used only to state compatibility.
 ## License
 
 MIT © PiGON AI LLC — see [LICENSE](LICENSE)
+
+EchoVoice™ and EchoAvatar™ are trademarks of PiGON AI LLC.
