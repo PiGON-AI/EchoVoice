@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.3
+
+- EchoVoice wears its mark: ™ on the listing name and readme.
+- The one-time review invitation (after 25 spoken replies, asked once,
+  never again) now reads the way we actually talk.
+
 ## 0.11.2 — Initial public release
 
 EchoVoice gives your AI coding partners a voice inside VS Code. This first
