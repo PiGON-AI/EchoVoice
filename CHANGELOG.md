@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.11.4
+
+- **Milo's emoji reactions land on cue again.** With the free local voices
+  (Kokoro and Piper) a reply is spoken in pieces, and every reaction was
+  arriving inside the first piece — so a 😄 halfway down a long answer fired
+  at the very start. Each reaction is now dealt to the piece it belongs to
+  and timed inside it. ElevenLabs was always right, and is untouched.
+- **Per-partner voices explain themselves.** The settings now say a Kokoro
+  voice key is welcome too — they only mentioned Piper, ElevenLabs and
+  system before. And if a saved voice belongs to a different engine than the
+  one you're using, EchoVoice tells you once instead of quietly falling back
+  to the default: pick your engine first, then give each partner a voice
+  from that engine.
+- **💡 Suggest an idea** — a new item in the 🔊 menu that opens the
+  suggestion box in your browser. Nothing is sent from here; it's a door you
+  push.
+- **A quiet word after an update.** When EchoVoice updates, one small toast
+  names what changed and offers the full changelog — once per version, asked
+  once, and never a release page that takes over your editor. Turn it off with
+  `echovoice.announceUpdates`.
+
 ## 0.11.3
 
 - EchoVoice wears its mark: ™ on the listing name and readme.
