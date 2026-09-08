@@ -24,6 +24,10 @@ Built for **Claude Code**, **Codex CLI**, **Gemini / Antigravity**, and **Kimi C
 - 📋 **Copy last response** — the full text, straight to your clipboard.
 - 📄 **Export transcript** — turn any saved Claude Code conversation into a clean Markdown file.
 
+## Coming soon: EchoMemory
+
+The suite's next organ — memory. Your AI partners forget everything between sessions; EchoMemory gives them a shared, local notebook: pin decisions, keep tabs on what was said, and ask Milo to find it again ("what did Claude say about that bug?"). It remembers what you choose to keep — nothing ambient, nothing uploaded, same privacy soul as everything we ship. And Milo's ear is learning to do more with it. 👂
+
 ## Quick start
 
 1. Install EchoVoice.
@@ -158,6 +162,10 @@ EchoVoice is an independent project by PiGON AI. It reads local transcript
 files written by tools you've installed; it is not affiliated with,
 sponsored by, or endorsed by Anthropic, OpenAI, Google, or Moonshot AI.
 Product names are used only to state compatibility.
+
+## Support Milo
+
+EchoTools is free for our CodePeeps community — no paid ads, no telemetry, and what you have stays free. If Milo helps your workflows and coding sessions, [buy us a coffee ☕](https://buymeacoffee.com/pigon) — it's the only way this stays running, and the more support there is, the more of the cool stuff we get to build and give away. Ideas are super welcome too: [💡 Suggest an idea](https://github.com/pigon-ai/echovoice/issues/new?template=idea.yml) lives in the menu.
 
 ## License
 

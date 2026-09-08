@@ -17,7 +17,7 @@ entire network surface. If it's not listed here, it doesn't happen.
 | Piper engine | Once, only if you pick a Piper voice, only after a consent dialog naming the size | ~30 MB | `github.com/rhasspy/piper` (pinned release `2023.11.14-2`) | SHA-256 pinned per platform archive |
 | Piper voices | Same consent flow | ~22 MB for the set | `huggingface.co/rhasspy/piper-voices` (pinned revision, never a moving branch) | SHA-256 pinned per voice + config |
 | ElevenLabs synthesis | Every spoken reply, **only** while you've selected ElevenLabs with your own API key | the request | `api.elevenlabs.io` over HTTPS | — |
-| Send Feedback button | Only when you click it | opens your browser | `github.com/pigon-ai/echovoice/issues` (https-only; non-https values of `echovoice.feedbackUrl` are ignored) | — |
+| Send Feedback / Suggest an idea / What changed buttons | Only when you click one | opens your browser | `github.com/pigon-ai/echovoice` — the feedback chooser (https-only; non-https values of `echovoice.feedbackUrl` are ignored), the fixed idea template, or the CHANGELOG from the after-update toast | — |
 
 **What the ElevenLabs request contains, exactly:** the prepared text of the
 reply being spoken — code blocks are stripped *before* sending — plus your
