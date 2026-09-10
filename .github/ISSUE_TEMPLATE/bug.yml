@@ -1,6 +1,16 @@
 name: Bug report
 description: Something isn't working the way the docs say it should
 labels: [bug]
+
+# DO NOT RENAME THE `id:` VALUES BELOW.
+# EchoVoice's "Report a problem" menu item opens this form with `version`,
+# `editor`, `os` and sometimes `what` already filled in, by passing them as
+# query parameters that match these ids exactly. The extension lives in another
+# repository, so nothing here fails loudly when an id changes — the prefill just
+# silently stops working and every report arrives empty again. Change a LABEL
+# freely; change an `id` only together with bugReportUrl() in extension.ts.
+# `editor` is a dropdown: its prefilled value must match one of its options.
+
 body:
   - type: input
     id: version
