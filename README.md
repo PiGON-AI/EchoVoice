@@ -78,6 +78,8 @@ If ElevenLabs is unreachable or misconfigured, EchoVoice falls back to your syst
 | `echovoice.maxSentences` | `0` | Sentences spoken per response (0 = all, the default) |
 | `echovoice.pronunciations` | `{}` | Teach voices your words: `{ "PiGON": "pie gone" }` |
 | `echovoice.readSymbols` | `false` | Speak code symbols as words (`=>` → "arrow") |
+| `echovoice.announceUpdates` | `true` | One small toast after an update, naming what changed — never a release page |
+| `echovoice.piper.voice` | `en_US-amy-medium` | Which of the ten Piper voices to speak with |
 | `echovoice.piper.speed` | `1` | Piper speaking speed (0.5–2) |
 | `echovoice.kokoro.voice` | `af_heart` | Which of the 29 Kokoro voices to speak with |
 | `echovoice.kokoro.speed` | `1` | Kokoro speaking speed (0.5–2) |
@@ -85,10 +87,11 @@ If ElevenLabs is unreachable or misconfigured, EchoVoice falls back to your syst
 | `echovoice.rate` | `0` | System voice rate, −10…10 (Windows) |
 | `echovoice.elevenlabs.voiceId` | — | Your default ElevenLabs voice ID |
 | `echovoice.elevenlabs.modelId` | `eleven_turbo_v2_5` | ElevenLabs model |
-| `echovoice.voice.claudeCode` | — | Voice override for Claude Code (voice ID or system voice name) |
-| `echovoice.voice.codex` | — | Voice override for Codex |
-| `echovoice.voice.antigravity` | — | Voice override for Gemini / Antigravity |
-| `echovoice.voice.kimi` | — | Voice override for Kimi Code |
+| `echovoice.kokoro.voices` | `{}` | Per-partner Kokoro voices — easiest from the menu → *Per-partner voices* |
+| `echovoice.piper.voices` | `{}` | Per-partner Piper voices, e.g. `{ "codex": "en_US-bryce-medium" }` |
+| `echovoice.elevenlabs.voices` | `{}` | Per-partner ElevenLabs voice IDs |
+| `echovoice.system.voices` | `{}` | Per-partner system voice names |
+| `echovoice.voice.<partner>` | — | **Legacy** (`claudeCode`, `codex`, `antigravity`, `kimi`). Held one voice for whichever engine was active when you set it. Still honored, then **moved automatically** into that engine's own list above the next time that engine speaks. Pick the engine first, then the partner's voice |
 
 ## How it works (and what it doesn't do)
 
