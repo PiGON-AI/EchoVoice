@@ -2,7 +2,10 @@ name: Bug report
 description: Something isn't working the way the docs say it should
 labels: [bug]
 
-# DO NOT RENAME THE `id:` VALUES BELOW.
+# DO NOT RENAME THE `id:` VALUES BELOW. TWO doors depend on them: EchoVoice's
+# "Report a problem" menu item, AND EchoAvatar's red "Report it" pill — the
+# watchdog pill opens THIS form (the reading problem is EchoVoice's), prefilling
+# `title`, `version`, `editor`, `os` and `what`.
 # EchoVoice's "Report a problem" menu item opens this form with `version`,
 # `editor`, `os` and sometimes `what` already filled in, by passing them as
 # query parameters that match these ids exactly. The extension lives in another
