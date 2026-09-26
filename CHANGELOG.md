@@ -1,5 +1,91 @@
 # Changelog
 
+## 1.0.0
+
+*Why this is 1.0: EchoVoice now tells you when a partner's format changes
+instead of going quiet, Milo has been taught to read developer text, Kokoro
+and Piper were rebuilt around what people actually heard, and every behaviour
+that matters leaves a receipt in the log.*
+
+- **A reply written while EchoVoice was restarting is spoken, not lost.**
+  EchoVoice has always refused to read history aloud — nobody wants a hundred
+  old replies on a Monday morning — but that rule had a hole: when the editor
+  restarted it for a couple of seconds (an update installing, a reload), a
+  reply your partner finished in that gap looked exactly like history and was
+  dropped in silence. Now EchoVoice remembers how far it had read each
+  conversation and when; on the way back up it speaks what arrived during a
+  short gap (up to two minutes) and still skips anything older. Close the
+  laptop over lunch and you get silence, as before; blink through a restart and
+  you get the reply.
+- **Milo reads developer text better on the free voices.** Kokoro and Piper
+  never dropped a character — the stumbles were pronunciation and flow. We
+  surveyed 400 real replies for what tripped them and taught the reader five
+  things: acronyms are spelled when they should be (`CPU`, `PR`, `HTML`) and
+  said as words when they are words (`README` → "read me", `OK` → "okay");
+  numbers keep their units ("3.4 seconds", "92 megabytes", "0.72 times");
+  a commit hash is its first seven characters spelled, not forty letters of
+  noise, and a UUID is just "an ID"; long asides in parentheses get a breath
+  around them; and dashes, ellipses and symbol runs (`->`, `!=`, `&&`) become
+  the pause or the word they mean. ElevenLabs, which already reads these
+  well, is untouched.
+- **Kokoro knows twice as many words, and reads the ones it doesn't as two it
+  does.** The words that still stumbled were not exotic English — they were
+  developer words the dictionary lacked (`async`, `TypeScript`, `linter`,
+  `middleware`) and words it knew glued together: EchoVoice came out
+  "etch-uh-voice", `runtime` as "run-tim", `changelog` as "chain-jel-og".
+  Kokoro's dictionary is now built from misaki's — the pronunciations the model
+  was actually trained on, used under their Apache-2.0 licence with thanks
+  (see THIRD_PARTY_NOTICES.md) — over CMUdict: 254,000 words instead of
+  126,000. A word not in it is read as two words that are (`echo` + `voice`,
+  `hand` + `off`, `screen` + `shot`, `un` + `install`), possessives get the
+  right ending, and a short list of our own names and everyday tools (Supabase,
+  Vercel, Kubernetes, nginx, Postgres…) is spelled out by hand. Round two of
+  the reading lessons follows the same receipt: plural acronyms (`LLMs`,
+  `URLs`), letters with numbers (`MP4`, `S3`), lowercase shorthand (`ps`,
+  `src`, `dbt`), filenames with versions (`echovoice-0.11.4.vsix`), dotfiles,
+  bare domains (`echotools.dev`), `Date.now()`, and `EventDetailModal`. Round
+  three came from the panel that judged this build before release: prices
+  (`$0.99`, `$10/month`), ranges (`100-200ms`, `10–20`), `userId`,
+  `console.log`, "a 30s timeout" as thirty seconds while "a 90s kid" keeps
+  its decade, and wordpress, timeseries and scriptable read as the two words
+  they are. Measured on 400 real replies: the words the engine had to guess
+  at fell from one in 37 to one in 300 — the rest is in the log, not in your
+  ear.
+- **Kokoro's pauses, measured and explained.** On some machines Kokoro
+  synthesizes slower than it speaks, and long replies pause between
+  sentences while the next one is still cooking — the most-reported Kokoro
+  complaint. EchoVoice now measures that waiting time on every reply (it's in
+  the Output log as `kokoro: pace`), and if it's real and repeated it tells
+  you once what's happening and offers the lighter voice — Piper on Windows
+  and Linux, your Mac's own voices on a Mac. Kokoro also
+  uses more of your CPU when you have it: up to 8 threads instead of 4 on big
+  machines, and no longer parks half the cores on a 4-core laptop. A new
+  `echovoice.kokoro.threads` setting lets you set it yourself (0 = automatic).
+  This helps; it does not make a slow machine fast — that's a bigger job we're
+  working toward. And on machines that *are* fast enough, the remaining pauses
+  turned out to come from uneven sentence lengths, not speed: a short sentence
+  followed by a long one left the engine no time to get ahead. Replies now ramp
+  up gently from a quick first sentence and keep two sentences cooking ahead
+  instead of one, and Kokoro wakes up the moment your partner starts working
+  rather than when the reply arrives — so the first word comes sooner.
+- **Piper is Windows and Linux; a Mac gets Kokoro.** Piper's published macOS
+  build never ran: the archive labelled for Apple Silicon holds Intel binaries
+  and neither Mac archive ships the libraries the engine needs, so every Mac
+  that tried it downloaded well over a hundred megabytes to be told so. Our
+  Mac test window proved it to the byte, and Piper has left macOS. It is no
+  longer in any menu there; a Mac whose settings still say Piper speaks with
+  Kokoro and is told so once — the setting itself is left alone, so a Windows
+  or Linux machine sharing the account keeps Piper — and the slow-machine
+  hint offers the Mac's own system voices instead. Kokoro runs perfectly on Apple Silicon. On Windows and
+  Linux Piper stays what it was: the light voice for a slower machine — and
+  its download prompt now tells you the real sizes.
+- **Three things EchoVoice does now leave a receipt in the Output log.** When
+  a code block is skipped ("code block omitted"), when emoji reactions are
+  dealt out across a long reply, and when the after-update toast is shown —
+  or deliberately not shown, and why. None of this changes what you hear; it
+  changes what can be checked. If something ever sounds off, the log now says
+  what EchoVoice decided instead of leaving you to guess from memory.
+
 ## 0.11.5
 
 - **The intro panel works with a screen reader and a keyboard.** The audio

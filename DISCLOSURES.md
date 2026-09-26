@@ -14,8 +14,8 @@ entire network surface. If it's not listed here, it doesn't happen.
 | what | when | size | where from | verification |
 |---|---|---|---|---|
 | Kokoro model + selected voices | Once, only if you pick a Kokoro voice, only after you say yes to a consent dialog | ~92 MB model + ~0.5 MB per voice | `github.com/PiGON-AI/Echotools-Runtime` (our release, mirrored from [onnx-community/Kokoro-82M-v1.0-ONNX](https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX), Apache-2.0) | SHA-256 **and** exact byte size pinned in the extension source; mismatches are discarded |
-| Piper engine | Once, only if you pick a Piper voice, only after a consent dialog naming the size | ~30 MB | `github.com/rhasspy/piper` (pinned release `2023.11.14-2`) | SHA-256 pinned per platform archive |
-| Piper voices | Same consent flow | ~22 MB for the set | `huggingface.co/rhasspy/piper-voices` (pinned revision, never a moving branch) | SHA-256 pinned per voice + config |
+| Piper engine (Windows and Linux; not offered on macOS) | Once, only if you pick a Piper voice, only after a consent dialog naming the sizes | ~39 MB | `github.com/rhasspy/piper` (pinned release `2023.11.14-2`) | SHA-256 pinned per platform archive |
+| Piper voices | Same consent flow | 63 MB (medium) or 121 MB (high) per voice you pick | `huggingface.co/rhasspy/piper-voices` (pinned revision, never a moving branch) | SHA-256 pinned per voice + config |
 | ElevenLabs synthesis | Every spoken reply, **only** while you've selected ElevenLabs with your own API key | the request | `api.elevenlabs.io` over HTTPS | — |
 | Send Feedback / Suggest an idea / What changed buttons | Only when you click one | opens your browser | `github.com/pigon-ai/echovoice` — the feedback chooser (https-only; non-https values of `echovoice.feedbackUrl` are ignored), the fixed idea template, or the CHANGELOG from the after-update toast | — |
 
@@ -43,10 +43,13 @@ watches, extracts the newest reply, and speaks it.
 
 ## Platform notes — the kinks, up front
 
-- **macOS, Apple Silicon (M-series):** the upstream Piper build for Mac is
-  Intel-only, so Piper needs **Rosetta 2**
-  (`softwareupdate --install-rosetta`). Or skip the kink: **Kokoro runs
-  natively everywhere** and is the better voice.
+- **macOS:** Piper is **not offered**. The upstream Mac build is defective
+  (the "Apple Silicon" archive holds Intel binaries and neither Mac archive
+  ships the libraries the engine needs), so EchoVoice never downloads it on a
+  Mac; the menus show Kokoro, ElevenLabs and System, and a Mac whose settings
+  still say Piper speaks with Kokoro and is told so once — the setting is left
+  alone, so a Windows or Linux machine sharing the account keeps Piper.
+  **Kokoro runs natively on Apple Silicon** and is the free voice there.
 - **Windows:** ElevenLabs MP3 playback uses Media Foundation, which some
   Windows 11 installs ship without. EchoVoice detects this and points you to
   the fix (Settings → Apps → Optional features → "Windows Media Player

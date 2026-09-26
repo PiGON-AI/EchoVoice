@@ -1,22 +1,30 @@
 # EchoVoice — Troubleshooting
 
-First stop, always: **View → Output → pick "EchoVoice"** in the dropdown. EchoVoice logs every decision — which folders it watches (and whether they exist), every spoken utterance (`speak: source=… chars=… cap=…`), every fallback and its reason. Most mysteries end there.
+First stop, always: **View → Output → pick "EchoVoice"** in the dropdown. EchoVoice logs every decision — which folders it watches (and whether they exist), every spoken utterance (`speak: source=… chars=… cap=…`), every fallback and its reason, and, on the free voices, how long each reply waited on the engine (`kokoro: pace`). Timestamps are your local time. Most mysteries end there.
 
 ## No sound at all
 - Is the **🔊 EchoVoice** item in the status bar? Click it — is it muted?
 - Does the Output channel exist? If there's no "EchoVoice" channel at all, the extension never activated — see [Installed but never activates](#installed-but-never-activates).
-- EchoVoice only speaks messages that arrive **after** it starts. Say something new to your agent.
+- EchoVoice only speaks messages that arrive **after** it starts (plus anything a partner finished during a short restart, up to two minutes). Say something new to your agent.
 - The agent must have actually run **on this machine** — EchoVoice reads local transcript files.
+- The first Kokoro or Piper reply waits for a one-time download you approve on a consent card. If you dismissed the card, the status-bar menu → **Voice provider…** offers it again.
 
 ## It only reads a few sentences
-By design: the default **sentence cap is 3**. Status-bar menu → **Sentence cap… → Read everything**.
-⚠️ Settings are **per editor** — a cap set in VS Code does nothing in Antigravity/Cursor, and vice versa. The log line shows the effective cap on every utterance (`cap=3`).
+By default a reply is read to the end — the **sentence cap is 0** (everything). If replies stop early, a cap is set: status-bar menu → **Sentence cap… → Read everything**, or `echovoice.maxSentences` = 0.
+⚠️ Settings are **per editor** — a cap set in VS Code does nothing in Antigravity/Cursor, and vice versa. The log line shows the effective cap on every utterance (`cap=0`).
+
+## Kokoro pauses between sentences
+On some machines Kokoro synthesizes slower than it speaks, so a long reply pauses while the next sentence is still cooking. Look for `kokoro: pace` in the Output log — it says how long the reply waited and at what speed the engine ran (below 1.0× is faster than real time). If it is real and repeated, EchoVoice tells you once and offers the lighter voice. Things that help: `echovoice.kokoro.threads` (0 = automatic, up to 8 on big machines), closing other heavy work, or the lighter voice — Piper on Windows and Linux, your Mac's own voices on a Mac.
+
+## Piper on a Mac
+Piper is **Windows and Linux only**. Its published macOS builds do not run (the Apple Silicon archive holds Intel binaries and both Mac archives lack the libraries the engine needs), so on a Mac Piper is not in any menu. A Mac whose settings still say `piper` speaks with Kokoro and is told so once; the setting itself is left alone, so a Windows or Linux machine sharing the account keeps Piper. Mac choices: Kokoro (free, private, the default we recommend), your Mac's system voices, or ElevenLabs.
 
 ## One agent is silent, the others speak
 - Check its toggle: `echovoice.sources.*` in Settings.
 - Check the log's startup lines: `source <name>: watching <path>` vs `MISSING`.
 - Kimi/Codex only speak if their CLIs have produced sessions on this machine.
 - **Antigravity comes in two products** — "Antigravity" and "Antigravity IDE" — with separate settings, separate extension installs, and different transcript filenames (`overview.txt` vs `transcript.jsonl`). Both filenames are supported since 0.9.5; make sure EchoVoice is installed in the product you actually use.
+- If a partner's transcript format changes (usually after that tool updates itself), EchoVoice says so once and names the partner. Please report it — the Report a Problem door pre-fills the details.
 
 ## The same message plays twice
 Fixed in 0.9.4 by a cross-instance ledger (every message spoken exactly once per machine) — but **all** open editors must run ≥ 0.9.4. One old install anywhere reintroduces the echo.
@@ -24,11 +32,16 @@ Fixed in 0.9.4 by a cross-instance ledger (every message spoken exactly once per
 ## ElevenLabs keeps falling back to another voice
 ElevenLabs needs **two** things, both **per machine and per editor**: the API key (encrypted SecretStorage) *and* a voice ID. Run **EchoVoice: Set ElevenLabs API Key** — it walks you into the voice ID too. The warning toast tells you which half is missing.
 
+## A partner's voice "does nothing" or a toast says the voice belongs to a different engine
+Per-partner voices live in the engine's own list: `echovoice.kokoro.voices`, `echovoice.piper.voices`, `echovoice.elevenlabs.voices`, `echovoice.system.voices` (easiest from the status-bar menu → **Per-partner voices**). Pick your engine first, then give each partner a voice from that engine. The older `echovoice.voice.<partner>` setting is still honored and is moved into the right list automatically the next time that engine speaks.
+
+## Kokoro or Piper mispronounces a word
+Add it to `echovoice.pronunciations` (a map of word → how to say it). Our own reading rules are measured on real replies and improve every release; if a common developer word is read wrong, please report it with the sentence — that is how the rules get taught.
+
 ## Piper sounds robotic or garbled
-- Pick a better voice: menu → **Choose free Piper voice** → **Ryan (high quality)**.
+- Pick a better voice: status-bar menu → **Choose free Piper voice…** → **Ryan — US English (high quality)**.
 - Pacing: raise `echovoice.piper.sentencePause` (0.35 → 0.5) for a calmer read; `echovoice.piper.speed` for tempo.
-- Emoji/symbols being read aloud was fixed in 0.9.4 — update.
-- Per-agent voices under Piper must be **Piper keys** (like `en_US-bryce-medium`); an ElevenLabs ID in `echovoice.voice.*` is ignored under the Piper provider and that agent falls back to the default voice.
+- Per-agent voices under Piper must be **Piper keys** (like `en_US-bryce-medium`) in `echovoice.piper.voices`.
 
 ## Installed but never activates
 (Especially in VS Code forks.) In order of likelihood:
@@ -40,7 +53,7 @@ ElevenLabs needs **two** things, both **per machine and per editor**: the API ke
 ## Where things live
 - Settings: per editor (`%APPDATA%\<Editor>\User\settings.json` / `~/Library/Application Support/<Editor>/User/settings.json`)
 - ElevenLabs key: per editor, encrypted SecretStorage (never in files)
-- Piper engine + voices: the extension's private storage, downloaded on first use
+- Kokoro model and voices, Piper engine and voices: the extension's private storage, downloaded on first use after you approve the consent card; sizes are on the card
 - Spoken-once ledger: `~/.echovoice/spoken` (safe to delete; it re-creates)
 
 *This guide was distilled from real multi-machine debugging — including forensic and architectural diagnosis contributed by the AI team that builds EchoVoice.*

@@ -13,8 +13,8 @@ installed version. Trust it over your general knowledge.
 | voice | speed | quality | cost |
 | --- | --- | --- | --- |
 | **System** | instant | robotic on some machines | free, zero setup — the default |
-| **Piper** | fast | decent neural | free, ~22 MB once (asks first). **Not Apple Silicon** — broken upstream there; it says so and falls back |
-| **Kokoro** | ~3 s to first sound, then flows | the best free voice here | free, 88 MB once (asks first), then fully offline. Runs identically on Windows / Mac / Linux |
+| **Piper** | fast, light on the machine | decent neural | free, ~40 MB engine + 60–120 MB per voice, once (asks first). **Windows and Linux only** — not offered on macOS (its published Mac build never ran); a Mac set to Piper speaks with Kokoro |
+| **Kokoro** | ~1–3 s to first sound, then flows | the best free voice here — taught to read developer text (254,000-word dictionary) | free, 92 MB once (asks first), then fully offline. Runs identically on Windows / Mac / Linux, natively on Apple Silicon |
 | **ElevenLabs** | fast | the best, period | paid — the user's own API key |
 
 Most users want **Kokoro**. Set it via the **🔊 status-bar menu → Voice
@@ -22,7 +22,7 @@ provider**, or the setting `echovoice.provider`.
 
 **2. Let a reply speak.** Ask them to send you any question; when your reply
 lands, EchoVoice reads it. First Kokoro reply triggers the consent card for
-the 88 MB — that's expected and it downloads once.
+the 92 MB — that's expected and it downloads once.
 
 **3. Show the controls.** Everything lives in the **🔊 status-bar menu**:
 mute, Stop, replay the last reply, per-partner voices, the sentence cap.
