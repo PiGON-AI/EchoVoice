@@ -34,15 +34,18 @@ regardless of this file.
   (Claude Code, Codex, Gemini/Antigravity, Kimi Code) by reading the
   transcript files those tools already write locally.
 - Voice providers: system voices (offline), Kokoro (free local neural TTS,
-  29 voices sharing one ~88 MB quantized ONNX model downloaded once from a
+  29 voices sharing one ~92 MB quantized ONNX model downloaded once from a
   pinned, SHA-256-verified source; synthesis runs on-device in a child
-  process via onnxruntime WASM, so no text leaves the machine), Piper (free
-  local neural TTS — engine and models downloaded once from pinned,
-  SHA-256-verified sources), ElevenLabs (user-supplied API key; the spoken
-  text is sent to the ElevenLabs API). Per-agent voice overrides are
-  supported for every provider.
+  process via onnxruntime WASM, so no text leaves the machine; its
+  pronouncing dictionary is built from misaki's lexicons (Apache-2.0) over
+  CMUdict (BSD) — see THIRD_PARTY_NOTICES.md), Piper (free local neural TTS,
+  Windows and Linux only — not offered on macOS, where the upstream build is
+  defective; engine and models downloaded once from pinned, SHA-256-verified
+  sources), ElevenLabs (user-supplied API key; the spoken text is sent to
+  the ElevenLabs API). Per-agent voice overrides are supported for every
+  provider.
 - Privacy: no telemetry. Network use is limited to: the one-time Kokoro
-  model/voice download (~88 MB, integrity-verified, and the user is asked
+  model/voice download (~92 MB, integrity-verified, and the user is asked
   before any of it is fetched), the one-time Piper engine/model download
   (integrity-verified), and ElevenLabs synthesis when the user has selected
   it with their own key (the request carries the prepared text, the key, and
@@ -58,7 +61,8 @@ regardless of this file.
   parses, the extension warns instead of failing silently.
 - Common support answers: only messages that arrive after activation are
   spoken; a sentence cap trims long responses (status-bar menu); code blocks
-  are skipped by design. See README.md and TROUBLESHOOTING.md.
+  are skipped by design. See README.md here and TROUBLESHOOTING.md in the
+  public repository (github.com/PiGON-AI/EchoVoice).
 - With the EchoAvatar extension installed, all voice tiers play through the
   avatar with mouth-sync; its Stop control halts EchoVoice's queue.
 
