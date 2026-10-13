@@ -43,7 +43,7 @@ licensed; **no GPL or other copyleft code is bundled**.
   0.7 (BSD-style licence, © 1993–2015 Carnegie Mellon University), as converted
   by HeadTTS. The full copyright header is preserved inside the dictionary
   file itself; the unmerged conversion is kept by us alongside the build
-  tooling and is not shipped. Write to milo@pigon.ai for either.
+  tooling and is not shipped. Write to milo@echotools.dev for either.
 - **en-us-echo.txt** — our own names and developer words, written by us; not
   third-party.
 - **NRL Report 7948** — the letter-to-sound fallback rules derive from
@@ -62,6 +62,17 @@ Pinned versions, SHA-256-verified before installation (see llms.txt):
   **Apache-2.0**, derived from [hexgrad/Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M).
   The model weights and voice tensors are downloaded on first use; a copy of
   the Apache-2.0 licence text is written beside them at install time.
+- **whisper.cpp** speech-to-text engine — [ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp),
+  **MIT License** (© 2023-2026 The ggml authors). Downloaded only if you turn
+  on voice input in EchoAvatar, as a command-line program built in the open by
+  our runtime repository's workflow from one pinned upstream commit (the
+  release notes name the commit and the build flags); a copy of the MIT text
+  is written beside it at install time. It runs as a separate program that
+  EchoAvatar starts; it is not linked into or shipped with this extension.
+- **Whisper base.en model** — [ggerganov/whisper.cpp on Hugging Face](https://huggingface.co/ggerganov/whisper.cpp),
+  **MIT License**, converted from [OpenAI Whisper](https://github.com/openai/whisper)
+  (MIT). Downloaded with the engine above, re-hosted on our release and pinned
+  by digest and size.
 - **Piper** text-to-speech engine — [rhasspy/piper](https://github.com/rhasspy/piper),
   MIT License. Piper embeds espeak-ng (**GPL-3.0**) for phonemization; the
   engine is executed as a separate downloaded program, not linked into or

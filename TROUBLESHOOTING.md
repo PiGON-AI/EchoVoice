@@ -4,6 +4,7 @@ First stop, always: **View → Output → pick "EchoVoice"** in the dropdown. Ec
 
 ## No sound at all
 - Is the **🔊 EchoVoice** item in the status bar? Click it — is it muted?
+- **Starts muted after every reload?** An older version saved your mute in Settings. Since 1.1.0, unmuting clears that saved "off", and EchoVoice asks once at start whether to turn it on. To fix it by hand, remove `"echovoice.enabled": false` from your User Settings (JSON).
 - Does the Output channel exist? If there's no "EchoVoice" channel at all, the extension never activated — see [Installed but never activates](#installed-but-never-activates).
 - EchoVoice only speaks messages that arrive **after** it starts (plus anything a partner finished during a short restart, up to two minutes). Say something new to your agent.
 - The agent must have actually run **on this machine** — EchoVoice reads local transcript files.

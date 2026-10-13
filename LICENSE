@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 PiGON AI LLC
+Copyright (c) 2026 PiGON EVOLUTIVE AI LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+CHARACTERS AND VOICES ARE NOT COVERED BY THIS LICENSE
+
+The MIT license above covers the source code of this extension only. It does
+not cover the EchoTools characters, Milo, Wispie and Xie, or anything that
+makes them who they are: their names, looks and designs, artwork, 3D models,
+animations, films, sounds and voices. These are copyright (c) 2026 PiGON EVOLUTIVE AI
+LLC, all rights reserved, and may not be copied, reused or adapted, in whole
+or in part, without written permission from PiGON EVOLUTIVE AI LLC.
+
+Third-party music, sound effects, voices, voice models and other assets used
+by this extension keep their own licenses, as listed in its credits and
+notices files.
