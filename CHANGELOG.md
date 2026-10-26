@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.1
+
+*Why this release: four things people hit after 1.1.0, found in real Output logs by the EchoAvatar window and fixed within the week. Install it with EchoAvatar 1.1.1.*
+
+- **No more false "I can't read Claude Code".** Claude Code 2.1.289 writes seven new kinds of record, one of them in long bursts, and EchoVoice read a burst as a changed format. It now recognises a Claude Code record by its shape, so a new kind is a new word, not an outage.
+- **No more old replies spoken the moment a window opens.** A transcript that appears already full (a fork, a restored chat, a partner migrating its session files) is history now; only a brand-new session is read from the start, and the log says which it saw.
+- **A stuck clip in Milo's window no longer stalls a reply for five minutes.** EchoVoice waits about the clip's own length, then clears it and moves on. EchoAvatar 1.1.1 fixes its side too: a clip always finishes, and a reply is never marked spoken by mistake.
+- **Kokoro stays fast with many windows open.** At most two windows keep a warm engine; a window that isn't the one speaking lets its model go. Every Kokoro line in the Output log now names its window.
+
 ## 1.1.0
 
 *Why this release: Milo talks back. With EchoAvatar 1.1.0 and EchoMemory, you hold a button, ask out loud, and Milo answers from your notes in his own voice. EchoVoice is the voice of that, and the door it all speaks through.*
