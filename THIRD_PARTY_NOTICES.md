@@ -54,6 +54,21 @@ licensed; **no GPL or other copyleft code is bundled**.
 - **Kokoro tokenizer** — `media/kokoro/g2p/tokenizer.json` is data from the
   Kokoro model distribution, Apache-2.0 (see below).
 
+- **Three Halloween sounds** — the sounds the Halloween voices make when they
+  are done speaking, shipped as `media/halloween/` (`witch.wav`, `pumpkin.wav`,
+  `ghost.wav`), converted to 24 kHz mono and played trimmed and at a low level
+  inside the voice feature only; they are never offered on their own. All three
+  are from Pixabay under the
+  [Pixabay Content License](https://pixabay.com/service/license-summary/)
+  (free to use and modify, no attribution required; we credit them anyway):
+  "witch (laughing)" by freesound_community
+  ([pixabay.com/sound-effects/horror-witch-laughing-104760](https://pixabay.com/sound-effects/horror-witch-laughing-104760/)),
+  "Evil Laughter" by DRAGON-STUDIO
+  ([pixabay.com/sound-effects/horror-evil-laughter-494314](https://pixabay.com/sound-effects/horror-evil-laughter-494314/)),
+  and "Ghost Horror Sound" by DRAGON-STUDIO
+  ([pixabay.com/sound-effects/horror-ghost-horror-sound-382709](https://pixabay.com/sound-effects/horror-ghost-horror-sound-382709/)).
+  The voices themselves are blends of Kokoro's own voices (Apache-2.0, below).
+
 ## Downloaded at runtime, at the user's request
 
 Pinned versions, SHA-256-verified before installation (see llms.txt):
