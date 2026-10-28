@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0
+
+*Why this release: Halloween. Three voices tuned by ear in a listening lab, each a blend of two Kokoro voices with its own effect, and each with a sound that plays once the voice is done speaking. Ships alongside EchoAvatar's Halloween build.*
+
+- **Three Halloween voices: Witch, Pumpkin and Ghost.** Status-bar menu → *Per-partner voices* → give any partner, or Milo himself, one of them: they are under *Halloween* at the top of the list. The Witch is thin and sharp with a flutter at the edges; the Pumpkin is low and hollow with a growl; the Ghost wavers in a cold hall. Each is a free local Kokoro voice (a half-megabyte download the first time, after the usual card) with its effect applied as it speaks, sentence by sentence, so the first word still comes fast. With EchoAvatar's Halloween build, Milo wears the costume of the voice that is speaking: each clip EchoVoice hands him now names its voice, and EchoVoice tells him when a reply begins and ends, so he holds the shape through the pauses between sentences instead of drifting back to idle.
+- **A sound when the voice is done.** Every reply in a Halloween voice ends with its sound: the Witch cackles, the Pumpkin laughs, the Ghost leaves a haunted hush. It plays after the last sentence, every time, short replies too. `echovoice.halloween.endSound` turns the sound off and keeps the voice. Stop cuts the sound with the reply.
+- **The first word comes sooner on Kokoro.** The first thing spoken is now the first sentence alone, never two short ones joined, and a long first sentence is cut at a breath. Replaying 13,642 real replies through the pipeline's timing, the typical wait for the first word halves (3.2 to 1.6 seconds on our test machine) with the same flow between sentences as before. On a machine that synthesizes slower than it speaks, the pauses between sentences on long replies may grow a little in exchange; the pace line in the Output log still says exactly how much. Piper is unchanged.
+- **What it costs.** The effect is plain arithmetic, about one percent of the audio's length, so it never shows in the pace line; the Output log says what it took. The three sounds ship inside the package (half a megabyte together), so nothing waits on a download. Credits in `THIRD_PARTY_NOTICES.md`.
+
 ## 1.1.1
 
 *Why this release: four things people hit after 1.1.0, found in real Output logs by the EchoAvatar window and fixed within the week. Install it with EchoAvatar 1.1.1.*

@@ -71,6 +71,13 @@ Codex, Gemini and Kimi each sound like themselves.
   from my partners" is that default, not a bug.
 - **Teach a word** with "EchoVoice: Teach Milo a Word" (stored in
   `echovoice.pronunciations`, applies to every voice).
+- **The Halloween voices (1.2.0)** are Kokoro voices picked like any other:
+  status-bar menu → *Per-partner voices* → the *Halloween* group at the top
+  (keys `halloween_witch`, `halloween_pumpkin`, `halloween_ghost`). They need
+  the Kokoro model like every Kokoro voice. Each ends every reply with its
+  sound; `echovoice.halloween.endSound = false` keeps the voice and drops the
+  sound. With EchoAvatar's Halloween build, Milo wears the costume of the
+  voice that is speaking; a partner-only pick dresses him too.
 - **After installing a dev or same-version VSIX, reload the window** before
   testing; the old code keeps running until then.
 - ElevenLabs keys live in the editor's **encrypted SecretStorage**, never in

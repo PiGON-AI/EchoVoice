@@ -14,7 +14,7 @@ Built for **Claude Code**, **Codex CLI**, **Gemini / Antigravity**, and **Kimi C
 
 - 🔊 **Speaks new responses automatically** — watches your partners' conversation transcripts and reads each new reply aloud.
 - 🎙️ **Four voices to choose from.** Best sound: ElevenLabs, with your own key. Best free and private, and the default we recommend: Kokoro. On a Mac the choices are Kokoro, ElevenLabs and the system voices; Piper is Windows and Linux.
-  - **Kokoro** (recommended) — free, local, and the most natural of the free options. Twenty-nine voices (US / UK, male and female). They share one model that downloads once, 92 MB, and EchoVoice asks before spending a byte; after that it's offline, and each extra voice is half a megabyte. Runs the same on Windows, macOS (Intel and Apple Silicon), and Linux. **It works your CPU**: on a modern machine it flows; on an older or smaller one, long replies can pause between sentences while the next one is made — see *Kokoro and your machine* in the FAQ before you decide it's broken. It isn't; it's the machine.
+  - **Kokoro** (recommended) — free, local, and the most natural of the free options. Twenty-nine voices (US / UK, male and female), plus three Halloween voices with a sound at the end (below). They share one model that downloads once, 92 MB, and EchoVoice asks before spending a byte; after that it's offline, and each extra voice is half a megabyte. Runs the same on Windows, macOS (Intel and Apple Silicon), and Linux. **It works your CPU**: on a modern machine it flows; on an older or smaller one, long replies can pause between sentences while the next one is made — see *Kokoro and your machine* in the FAQ before you decide it's broken. It isn't; it's the machine.
   - **Piper** (Windows and Linux) — free, local, *neural*, and much lighter on the machine: about 150 MB of memory while it speaks against Kokoro's 600 MB to 1 GB, and a sentence is made in a fraction of the time. Ten voices (US / UK / Scottish); the engine is 39 MB and each voice you pick is 63 to 121 MB, so on disk it is *not* the smaller choice — see *What it costs* below. The right pick for a slower machine. **Not offered on macOS:** the published Mac build never ran there (it is missing the libraries it needs), so a Mac speaks with Kokoro, and a Mac's own system voices are the light option.
   - **System voices** — free, offline, works out of the box (robotic on some systems). Also the automatic fallback if a local engine can't run, so you still hear your partner.
   - **ElevenLabs** — bring your own API key and voice ID for premium/cloned voices. The key is stored in VS Code's encrypted SecretStorage, never in settings files.
@@ -27,6 +27,10 @@ Built for **Claude Code**, **Codex CLI**, **Gemini / Antigravity**, and **Kimi C
 - 🔇 **One-click mute** — status bar toggle, always visible. It mutes this window until you reload it; to keep EchoVoice quiet for good, turn off `echovoice.enabled` in Settings.
 - 📋 **Copy last response** — the full text, straight to your clipboard.
 - 📄 **Export transcript** — turn any saved Claude Code conversation into a clean Markdown file.
+
+## Halloween voices
+
+Three voices for the season, under *Halloween* at the top of *Per-partner voices*: the **Witch** (thin and sharp, a flutter at the edges), the **Pumpkin** (low and hollow, with a growl) and the **Ghost** (wavering in a cold hall). Give one to a partner, or to Milo himself. Each is a blend of two Kokoro voices with its effect applied as it speaks, and each ends every reply with its sound: the Witch cackles, the Pumpkin laughs, the Ghost leaves a haunted hush. `echovoice.halloween.endSound` turns the sound off and keeps the voice. They were tuned by ear in a listening lab, not by numbers.
 
 ## The free voices, and the work behind them
 
@@ -107,6 +111,7 @@ If ElevenLabs is unreachable or misconfigured, EchoVoice falls back to your syst
 | `echovoice.elevenlabs.voiceId` | — | Your default ElevenLabs voice ID |
 | `echovoice.elevenlabs.modelId` | `eleven_turbo_v2_5` | ElevenLabs model |
 | `echovoice.kokoro.voices` | `{}` | Per-partner Kokoro voices — easiest from the menu → *Per-partner voices*. The key `milo` is Milo's own voice: he keeps one, in whichever engine's list holds it, and the menu clears the others when you pick |
+| `echovoice.halloween.endSound` | `true` | The Halloween voices end every reply with their sound; off keeps the voice without the sound |
 | `echovoice.piper.voices` | `{}` | Per-partner Piper voices, e.g. `{ "codex": "en_US-bryce-medium" }` |
 | `echovoice.elevenlabs.voices` | `{}` | Per-partner ElevenLabs voice IDs |
 | `echovoice.system.voices` | `{}` | Per-partner system voice names |

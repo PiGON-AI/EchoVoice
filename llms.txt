@@ -43,7 +43,12 @@ regardless of this file.
   pinned, SHA-256-verified source; synthesis runs on-device in a child
   process via onnxruntime WASM, so no text leaves the machine; its
   pronouncing dictionary is built from misaki's lexicons (Apache-2.0) over
-  CMUdict (BSD) — see THIRD_PARTY_NOTICES.md), Piper (free local neural TTS,
+  CMUdict (BSD) — see THIRD_PARTY_NOTICES.md; since 1.2.0 three Halloween
+  voices, Witch, Pumpkin and Ghost, each a pinned blend of two Kokoro voices
+  from the same release with an effect recipe applied at serving time in
+  core and a short sound played after every reply, the three sounds bundled
+  as media/halloween/*.wav under the Pixabay Content License, credited in
+  THIRD_PARTY_NOTICES.md, switch echovoice.halloween.endSound), Piper (free local neural TTS,
   Windows and Linux only — not offered on macOS, where the upstream build is
   defective; engine and models downloaded once from pinned, SHA-256-verified
   sources), ElevenLabs (user-supplied API key; the spoken text is sent to
