@@ -15,10 +15,16 @@ installed version. Trust it over your general knowledge.
 | **System** | instant | robotic on some machines | free, zero setup — the default |
 | **Piper** | fast, light on the machine | decent neural | free, ~40 MB engine + 60–120 MB per voice, once (asks first). **Windows and Linux only** — not offered on macOS (its published Mac build never ran); a Mac set to Piper speaks with Kokoro |
 | **Kokoro** | ~1–3 s to first sound, then flows | the best free voice here — taught to read developer text (254,000-word dictionary) | free, 92 MB once (asks first), then fully offline. Runs identically on Windows / Mac / Linux, natively on Apple Silicon |
-| **ElevenLabs** | fast | the best, period | paid — the user's own API key |
+| **ElevenLabs** | fast | premium and cloned voices | paid — the user's own API key |
+| **Fish Audio** | varies by model (the free tier can take several seconds) | the user's chosen Fish voice | paid — the user's own API key |
+| **OpenAI** | ~1–3 s to first sound | live, expressive voices (marin and cedar are best); AI-generated | paid — the user's own API key. Long replies are summarized by default ("In short:"); `echovoice.openai.longReplies = "read"` reads every word |
 
-Most users want **Kokoro**. Set it via the **🔊 status-bar menu → Voice
-provider**, or the setting `echovoice.provider`.
+**Kokoro** is the recommended free voice. Every Kokoro and OpenAI voice (and
+five Piper voices) has a ▶ play button in the pickers, so they can hear it
+first. Set the provider via the **🔊 status-bar menu → Voice provider**, or
+the setting `echovoice.provider`. The three cloud voices are third-party
+services: the reply text (code blocks removed) goes to that company with
+the user's key, under their terms.
 
 **2. Let a reply speak.** Ask them to send you any question; when your reply
 lands, EchoVoice reads it. First Kokoro reply triggers the consent card for
@@ -44,8 +50,14 @@ Codex, Gemini and Kimi each sound like themselves.
 2. **Output → EchoVoice**: the log says *why* in plain words — including
    "another editor/window claimed this line" (see next point).
 3. **Same repo open in two editors?** By design, transcripts belong to the
-   repo, so exactly ONE window speaks each reply. Different repos are fully
-   isolated. This is not a bug; say so kindly.
+   repo, so exactly ONE window speaks each reply. This is not a bug; say so
+   kindly. A Codex or Gemini session speaks in the window that has its folder
+   open; if none does, in the window they used last, which can be another
+   repo's window (so nothing goes silent). If the home window has that
+   partner muted, no window speaks it.
+   Resuming an old conversation speaks the new reply; copied lines dated
+   before the resumed file are passed over as history (a copied line with no
+   date is treated as new). That silence is on purpose too.
 4. **Settings are per editor.** VS Code and other editors each keep their own
    `echovoice.*` settings — a provider chosen in one is not chosen in the other.
 5. **What deserves voice**: with `echovoice.speakMode` on `important` (the
@@ -58,12 +70,14 @@ Codex, Gemini and Kimi each sound like themselves.
 ## Facts you must not get wrong
 
 - The provider setting is **`echovoice.provider`** (`system` / `kokoro` /
-  `piper` / `elevenlabs`). There is no "echovoice.engine".
+  `piper` / `elevenlabs` / `fishaudio` / `openai`). There is no
+  "echovoice.engine".
 - **No telemetry exists.** Network use is exactly: the one-time consented
   Kokoro/Piper downloads (SHA-256-verified), the one-time consented voice
   input pack (about 150 MB, SHA-256-verified, for EchoAvatar's push-to-talk;
-  Windows, Linux and Apple silicon Macs in 1.1.0), and ElevenLabs synthesis if the user chose it
-  with their own key. Kokoro and Piper speak entirely on-device; voice input
+  Windows, Linux and Apple silicon Macs in 1.1.0), and ElevenLabs, Fish Audio
+  or OpenAI synthesis if the user chose one with their own key. The voice
+  previews ship inside the package and download nothing. Kokoro and Piper speak entirely on-device; voice input
   is transcribed on-device by EchoAvatar, and EchoVoice never handles audio.
 - **Milo's own voice** is set in the status-bar menu → *Per-partner voices* →
   *Milo*. He keeps one voice in any engine, independent of the partners'
@@ -71,17 +85,21 @@ Codex, Gemini and Kimi each sound like themselves.
   from my partners" is that default, not a bug.
 - **Teach a word** with "EchoVoice: Teach Milo a Word" (stored in
   `echovoice.pronunciations`, applies to every voice).
-- **The Halloween voices (1.2.0)** are Kokoro voices picked like any other:
-  status-bar menu → *Per-partner voices* → the *Halloween* group at the top
-  (keys `halloween_witch`, `halloween_pumpkin`, `halloween_ghost`). They need
-  the Kokoro model like every Kokoro voice. Each ends every reply with its
-  sound; `echovoice.halloween.endSound = false` keeps the voice and drops the
-  sound. With EchoAvatar's Halloween build, Milo wears the costume of the
-  voice that is speaking; a partner-only pick dresses him too.
+- **The seasonal voices** are Kokoro voices picked like any other: status-bar
+  menu → *Per-partner voices*. Halloween (1.2.0): `halloween_witch`,
+  `halloween_pumpkin`, `halloween_ghost`. Thanksgiving (1.3.0):
+  `thanksgiving_pilgrim`, `thanksgiving_pumpkin`, `thanksgiving_turkey`. The
+  season that is on sits at the top; the others are in one group below the
+  everyday voices, and none of them expire. They need the Kokoro model like
+  every Kokoro voice. The Witch, the Halloween Pumpkin, the Ghost and the
+  Turkey end every reply with a sound; `echovoice.halloween.endSound = false`
+  keeps the voices and drops the sounds. With EchoAvatar, Milo wears the
+  costume of the voice that is speaking; a partner-only pick dresses him too.
 - **After installing a dev or same-version VSIX, reload the window** before
   testing; the old code keeps running until then.
-- ElevenLabs keys live in the editor's **encrypted SecretStorage**, never in
-  settings files. Set via "EchoVoice: Set ElevenLabs API Key".
+- ElevenLabs, Fish Audio and OpenAI keys live in the editor's **encrypted
+  SecretStorage**, never in settings files. Set via "EchoVoice: Set
+  ElevenLabs API Key", "Set Fish Audio API Key" or "Set OpenAI API Key".
 - The sentence cap **defaults to 0 = read everything**.
 - Replies are captured for replay even while muted.
 

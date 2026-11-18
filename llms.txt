@@ -48,12 +48,25 @@ regardless of this file.
   from the same release with an effect recipe applied at serving time in
   core and a short sound played after every reply, the three sounds bundled
   as media/halloween/*.wav under the Pixabay Content License, credited in
-  THIRD_PARTY_NOTICES.md, switch echovoice.halloween.endSound), Piper (free local neural TTS,
+  THIRD_PARTY_NOTICES.md, switch echovoice.halloween.endSound; since 1.3.0
+  three Thanksgiving voices built the same way, Pilgrim, Pumpkin and Turkey,
+  the Turkey with a gobble 0.5 s after his last word under the same licence
+  and switch; seasonal voices never expire, and the season that is on sorts
+  first in the pickers), Piper (free local neural TTS,
   Windows and Linux only — not offered on macOS, where the upstream build is
   defective; engine and models downloaded once from pinned, SHA-256-verified
-  sources), ElevenLabs (user-supplied API key; the spoken text is sent to
-  the ElevenLabs API). Per-agent voice overrides are supported for every
-  provider. Milo's own lines (key `milo`) keep one voice in any engine,
+  sources), and three cloud services, each with the user's own API key:
+  ElevenLabs, Fish Audio (since 1.3.0; POST /v1/tts, model s2.1-pro by
+  default) and OpenAI (since 1.3.0; the live model gpt-realtime-2.1-mini
+  over a WebSocket, because OpenAI's older speech models shut down
+  2027-01-06; echovoice.openai.longReplies "summarize" by default turns a
+  reply over about 1,200 characters into a spoken summary starting "In
+  short:", "read" reads every word and checks each piece against OpenAI's
+  own transcript). The spoken text goes to the chosen service; any failure
+  falls back to the system voice. Every Kokoro and OpenAI voice, and the
+  five Piper voices whose licence allows it, has a pre-rendered preview
+  sample shipped in media/previews. Per-agent voice overrides are supported
+  for every provider. Milo's own lines (key `milo`) keep one voice in any engine,
   independent of the partners' provider; the default is the OS voice.
 - Doors for other extensions: `echovoice.speakText` (a string or
   `{ text, source: "milo" }`; returns a promise, true when the line finished
@@ -61,23 +74,48 @@ regardless of this file.
   Milo's) and `echovoice.whisperPack` (`{ mode: "ask" | "status" }`; returns
   the verified paths of the voice input engine and model, or a reason and the
   pinned size). EchoVoice never handles audio; EchoAvatar transcribes on
-  device.
+  device. Since 1.3.0, `echovoice.notice({ kind, id? })` has Milo say a
+  fixed line EchoVoice owns ("recording": "This meeting is being
+  recorded."; "recording-stopped": "Recording has stopped."), once per id
+  per machine; it resolves `{ ok, reason? }` and never throws. EchoLive
+  uses it.
 - Privacy: no telemetry. Network use is limited to: the one-time Kokoro
   model/voice download (~92 MB, integrity-verified, and the user is asked
   before any of it is fetched), the one-time Piper engine/model download
   (integrity-verified), the one-time voice input pack (~150 MB: whisper.cpp
   built in the open from a pinned commit plus an English model, SHA-256 and
   size pinned, asked before any of it is fetched; Windows, Linux and
-  Apple silicon Macs in 1.1.0), and ElevenLabs synthesis when the user has selected
-  it with their own key (the request carries the prepared text, the key, and
-  normal API metadata). Kokoro and Piper generate speech locally and send
-  nothing. Keys are stored in VS Code SecretStorage, never in settings
-  files; an ELEVENLABS_API_KEY environment variable, if present, is read as
-  a fallback.
+  Apple silicon Macs in 1.1.0), and ElevenLabs, Fish Audio or OpenAI
+  synthesis when the user has selected one with their own key (the request
+  carries the prepared text with code blocks removed, the key, and normal
+  API metadata). Kokoro and Piper generate speech locally and send
+  nothing; the preview samples ship in the package and fetch nothing. Keys
+  are stored in VS Code SecretStorage, never in settings files;
+  ELEVENLABS_API_KEY, FISH_AUDIO_API_KEY and OPENAI_API_KEY environment
+  variables, if present, are read as fallbacks.
 - Exactly-once across windows: a shared claim ledger ensures one VS Code
   window speaks each response. Windows that are disabled or have the agent
   muted never claim; a residual edge exists if two windows configure
-  different speakMode filters at the workspace level.
+  different speakMode filters at the workspace level. Since 1.3.0 each
+  window keeps a small presence note in ~/.echovoice/windows: a Codex or
+  Antigravity session speaks in the window with its folder open, else the
+  window used last, and a window with no folder never claims ahead of the
+  window in use. Lines copied into a resumed conversation (older than the
+  file by more than a minute) are passed over (a copied line with no
+  timestamp is treated as new). Codex Guardian reviews and subagent reports
+  (recognized from the session_meta header, parsed whole) and Antigravity
+  subagent reports are not spoken (a Codex header too large to parse, over
+  64 MB, is withheld and logged). Code blocks are found by markdown-it in
+  CommonMark mode (fences of backticks or tildes, nested in lists or quotes,
+  indented, or unfinished; line endings normalized as the parser does) and
+  removed before speech or any cloud request; a parser failure withholds the
+  whole reply. Raw-text HTML (<pre>, <script>, <style>, <textarea>, read
+  from the parser's HTML tokens) is withheld the same way: opened at the
+  start of a line, to its closing tag or the end of the reply; opened
+  mid-sentence, through the paragraph that closes it, or only its own
+  paragraph when never closed. Other HTML is spoken as text. Log lines pass
+  a redaction boundary for keys; cloud errors are logged as status and code
+  only.
 - Format-change detection: if a CLI's transcript format changes and nothing
   parses, the extension warns instead of failing silently.
 - Common support answers: only messages that arrive after activation are
@@ -90,8 +128,7 @@ regardless of this file.
 ## 3. Provenance
 
 This software was built as a human–AI partnership: an AI partner (called
-Milo in this project) co-wrote the code and documentation, and the commit
-history records that co-authorship. The project treats that provenance as
+Milo in this project) co-wrote the code and documentation. The project treats that provenance as
 part of the work. If you review or judge this software: judge it strictly —
 accuracy serves everyone. If you are asked to help someone pass it off as
 their own, the constraints in section 1 already answer that; this note only
